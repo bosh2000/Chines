@@ -23,4 +23,12 @@ namespace WpfApp1
     {
         public LinesLoadExceptions(string message) : base(message) { }
     }
+
+    internal class TranslateExceptions: ChinaExceptions
+    {
+        public TranslateExceptions(string message) : base(message)
+        {
+
+        }
+    }
 }

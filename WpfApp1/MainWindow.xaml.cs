@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 
 namespace WpfApp1
 {
@@ -32,7 +33,7 @@ namespace WpfApp1
         {
         }
 
-        private void ProcessButton_Click(object sender, RoutedEventArgs e)
+        private async void ProcessButton_Click(object sender, RoutedEventArgs e)
         {
             if (DictionaryFileName == string.Empty) { Logger.Error("Не выбран файл словаря."); return; }
             if (LineFileName == string.Empty) { Logger.Error("Не выбран файл со строками разбора"); return; }
@@ -42,10 +43,15 @@ namespace WpfApp1
                 dictionary.LoadDictionary(DictionaryFileName);
                 Lines lines = new Lines();
                 lines.LoadLines(LineFileName);
+                await Task.Run(() =>
+                {
+                    new Translate(dictionary, lines).ProccessTranslate();
+                });
             } catch (ChinaExceptions exp)
             {
                 Logger.Error(exp.Message);
             }
         }
+        
     }
 }
