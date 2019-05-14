@@ -20,9 +20,31 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        private bool isDictionaryLoad;
+        private bool isLineLoad;
+        private string DictionaryFileName;
+        private string LineFileName;
         public MainWindow()
         {
             InitializeComponent();
+            DictionaryFileName = "E:\\dictionary.csv";
+            LineFileName = "E:\\titles.csv";
+            ProcessButton_Click(this, null);
+        }
+
+        private void DictionarySelectButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void StringLineSelectButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ProcessButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <TextBox x:Name="LogTextArea" HorizontalAlignment="Left" Height="340.452" Margin="10,72.548,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="772"/>
+        <Button x:Name="DictionarySelectButton" Content="Словарь" HorizontalAlignment="Left" Height="26.589" Margin="10,9.37,0,0" VerticalAlignment="Top" Width="89.521"/>
+        <Button x:Name="StringLineSelectButton" Content="Строки" HorizontalAlignment="Left" Height="26.589" Margin="10,40.959,0,0" VerticalAlignment="Top" Width="89.521"/>
+        <Label x:Name="DictionarySelectLabel" Content="" HorizontalAlignment="Left" Height="25.959" Margin="104.521,10,0,0" VerticalAlignment="Top" Width="537.753"/>
+        <Label x:Name="LineSelectLabel" Content="" HorizontalAlignment="Left" Height="25.959" Margin="104.521,41.589,0,0" VerticalAlignment="Top" Width="537.753"/>
+        <Button x:Name="ProcessButton" Content="Разобрать" HorizontalAlignment="Left" Height="58.178" Margin="642.274,9.37,0,0" VerticalAlignment="Top" Width="139.726"/>
+
     </Grid>
 </Window>
