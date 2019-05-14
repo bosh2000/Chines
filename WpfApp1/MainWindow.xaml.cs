@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace WpfApp1
 {
@@ -22,9 +9,9 @@ namespace WpfApp1
     {
         private bool isDictionaryLoad;
         private bool isLineLoad;
-        private string DictionaryFileName=string.Empty;
-        private string LineFileName=string.Empty;
-        
+        private string DictionaryFileName = string.Empty;
+        private string LineFileName = string.Empty;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -39,21 +26,26 @@ namespace WpfApp1
 
         private void DictionarySelectButton_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void StringLineSelectButton_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void ProcessButton_Click(object sender, RoutedEventArgs e)
         {
-
-            if (DictionaryFileName==string.Empty) { Logger.Info}
-            Dictionary dictionary = new Dictionary();
-            dictionary
+            if (DictionaryFileName == string.Empty) { Logger.Error("Не выбран файл словаря."); return; }
+            if (LineFileName == string.Empty) { Logger.Error("Не выбран файл со строками разбора"); return; }
+            try
+            {
+                Dictionary dictionary = new Dictionary();
+                dictionary.LoadDictionary(DictionaryFileName);
+                Lines lines = new Lines();
+                lines.LoadLines(LineFileName);
+            } catch (ChinaExceptions exp)
+            {
+                Logger.Error(exp.Message);
+            }
         }
-
     }
 }
