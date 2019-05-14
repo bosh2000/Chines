@@ -22,13 +22,18 @@ namespace WpfApp1
     {
         private bool isDictionaryLoad;
         private bool isLineLoad;
-        private string DictionaryFileName;
-        private string LineFileName;
+        private string DictionaryFileName=string.Empty;
+        private string LineFileName=string.Empty;
+        
         public MainWindow()
         {
             InitializeComponent();
             DictionaryFileName = "E:\\dictionary.csv";
             LineFileName = "E:\\titles.csv";
+            DictionarySelectLabel.Content = DictionaryFileName;
+            LineSelectLabel.Content = LineFileName;
+            Logger.Init(LogTextArea, Dispatcher);
+
             ProcessButton_Click(this, null);
         }
 
@@ -45,6 +50,10 @@ namespace WpfApp1
         private void ProcessButton_Click(object sender, RoutedEventArgs e)
         {
 
+            if (DictionaryFileName==string.Empty) { Logger.Info}
+            Dictionary dictionary = new Dictionary();
+            dictionary
         }
+
     }
 }

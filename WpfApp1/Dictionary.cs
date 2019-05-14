@@ -8,5 +8,10 @@ namespace WpfApp1
 {
     class Dictionary
     {
+        public void LoadDictionary(string fileName)
+        {
+
+        }
+
     }
 }
