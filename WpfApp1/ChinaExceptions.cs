@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WpfApp1
 {
@@ -10,25 +6,34 @@ namespace WpfApp1
     {
         public ChinaExceptions(string message) : base(message)
         {
-
         }
     }
 
-    internal class DictionaryLoadExceptions: ChinaExceptions
+    internal class DictionaryLoadExceptions : ChinaExceptions
     {
-        public DictionaryLoadExceptions(string message) : base(message) { }
+        public DictionaryLoadExceptions(string message) : base(message)
+        {
+        }
     }
 
     internal class LinesLoadExceptions : ChinaExceptions
     {
-        public LinesLoadExceptions(string message) : base(message) { }
+        public LinesLoadExceptions(string message) : base(message)
+        {
+        }
     }
 
-    internal class TranslateExceptions: ChinaExceptions
+    internal class TranslateExceptions : ChinaExceptions
     {
         public TranslateExceptions(string message) : base(message)
         {
+        }
+    }
 
+    internal class DictionaryFileFormatException : ChinaExceptions
+    {
+        public DictionaryFileFormatException(string message) : base(message)
+        {
         }
     }
 }
