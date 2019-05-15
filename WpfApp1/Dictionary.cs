@@ -14,7 +14,7 @@ namespace WpfApp1
         {
             try
             {
-                using(StreamReader reader=new StreamReader(fileName, System.Text.Encoding.Default))
+                using(StreamReader reader=new StreamReader(fileName, System.Text.Encoding.UTF8))
                 {
                     string line = string.Empty;
                     if (!CheckFormatDictionaryFile(reader.ReadLine())) throw new DictionaryFileFormatException("Неправильный формат словаря");
@@ -41,6 +41,24 @@ namespace WpfApp1
         {
             string[] decodeLine = line.Split('\t');
             dict.Add(Encoding.UTF8.GetBytes(decodeLine[0]), decodeLine[1]);
+        }
+
+        public bool Contains(List<byte> bytes)
+        {
+            return dict.ContainsKey(bytes.ToArray<byte>());
+        }
+
+        public string GetValue(byte[] bytes)
+        {
+            string retValue = string.Empty;
+            try
+            {
+                retValue = dict[bytes];
+            }catch(KeyNotFoundException exp)
+            {
+                retValue = "!KeyNotFound!"; /// тут обработка поиска в других источниках
+            }
+            return retValue;
         }
 
 

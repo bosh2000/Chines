@@ -22,7 +22,7 @@ namespace WpfApp1
             LineSelectLabel.Content = LineFileName;
             Logger.Init(LogTextArea, Dispatcher);
 
-            ProcessButton_Click(this, null);
+           // ProcessButton_Click(this, null);
         }
 
         private void DictionarySelectButton_Click(object sender, RoutedEventArgs e)

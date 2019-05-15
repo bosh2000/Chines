@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WpfApp1
 {
-    internal class Lines
+    internal class Lines : IEnumerable
     {
         private ArrayList lines = new ArrayList();
 
@@ -16,19 +16,25 @@ namespace WpfApp1
                 using (StreamReader reader = new StreamReader(fileName, System.Text.Encoding.Default))
                 {
                     string line = string.Empty;
-                   
+
                     while ((line = reader.ReadLine()) != null)
                     {
-                        lines.Add(Encoding.UTF8.GetBytes(line));
+                        lines.Add(Encoding.Default.GetBytes(line));
                     }
                 }
             }
             catch (Exception exp)
             {
                 Logger.Error(exp.Message);
-                throw new DictionaryLoadExceptions(exp.Message);
+                throw new LinesLoadExceptions(exp.Message);
             }
             Logger.Info("Строки загружены.");
         }
+
+        public IEnumerator GetEnumerator()
+        {
+            return lines.GetEnumerator();
+        }
+
     }
 }
