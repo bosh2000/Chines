@@ -1,4 +1,6 @@
-﻿namespace WpfApp1
+﻿using System;
+
+namespace WpfApp1
 {
     internal class Translate
     {
@@ -21,6 +23,7 @@
                 Vertex tmpVertex = tree;
                 foreach (char charValue in charArr)
                 {
+                    if (Char.IsDigit(charValue) || Char.IsSeparator(charValue)) { decodeString += charValue; continue; }
                     Vertex vertex = tmpVertex.isContainsPrefix(charValue);
                     if (vertex != null) { tmpVertex = vertex; }
                     else
@@ -31,8 +34,6 @@
                 }
                 Logger.Info(decodeString + "\b\r");
             }
-
-            
         }
     }
 }
