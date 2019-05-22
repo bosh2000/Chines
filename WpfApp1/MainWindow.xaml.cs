@@ -12,6 +12,7 @@ namespace WpfApp1
         private bool isLineLoad;
         private string DictionaryFileName = string.Empty;
         private string LineFileName = string.Empty;
+        private Vertex tree;
 
         public MainWindow()
         {
@@ -39,13 +40,13 @@ namespace WpfApp1
             if (LineFileName == string.Empty) { Logger.Error("Не выбран файл со строками разбора"); return; }
             try
             {
-                Dictionary dictionary = new Dictionary();
+                Dictionary dictionary = new Dictionary(tree);
                 dictionary.LoadDictionary(DictionaryFileName);
                 Lines lines = new Lines();
                 lines.LoadLines(LineFileName);
                 await Task.Run(() =>
                 {
-                    new Translate(dictionary, lines).ProccessTranslate();
+                    new Translate(tree, lines).ProccessTranslate();
                 });
             } catch (ChinaExceptions exp)
             {

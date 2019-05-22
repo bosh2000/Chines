@@ -2,19 +2,24 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WpfApp1
 {
-    class Dictionary
+    internal class Dictionary
     {
-        private Dictionary<byte[], string> dict =new Dictionary<byte[], string>();
+        public Vertex tree;
+
+        public Dictionary(Vertex tree)
+        {
+            this.tree = tree;
+        }
+
         public void LoadDictionary(string fileName)
         {
+            tree = new Vertex();
             try
             {
-                using(StreamReader reader=new StreamReader(fileName, System.Text.Encoding.UTF8))
+                using (StreamReader reader = new StreamReader(fileName, System.Text.Encoding.UTF8))
                 {
                     string line = string.Empty;
                     if (!CheckFormatDictionaryFile(reader.ReadLine())) throw new DictionaryFileFormatException("Неправильный формат словаря");
@@ -23,7 +28,8 @@ namespace WpfApp1
                         DecodeLine(line);
                     }
                 }
-            }catch (Exception exp)
+            }
+            catch (Exception exp)
             {
                 Logger.Error(exp.Message);
                 throw new DictionaryLoadExceptions(exp.Message);
@@ -34,33 +40,28 @@ namespace WpfApp1
         private bool CheckFormatDictionaryFile(string line)
         {
             string[] checkedLine = line.Split('\t');
-            return ((checkedLine[0]=="SourceText")&&(checkedLine[1]=="TargetText"))?true:false;
+            return ((checkedLine[0] == "SourceText") && (checkedLine[1] == "TargetText")) ? true : false;
         }
 
         private void DecodeLine(string line)
         {
             string[] decodeLine = line.Split('\t');
-            dict.Add(Encoding.UTF8.GetBytes(decodeLine[0]), decodeLine[1]);
-        }
-
-        public bool Contains(List<byte> bytes)
-        {
-            return dict.ContainsKey(bytes.ToArray<byte>());
-        }
-
-        public string GetValue(byte[] bytes)
-        {
-            string retValue = string.Empty;
-            try
+            char[] word = decodeLine[0].ToArray();
+            Vertex vertex = tree;
+            foreach (char arrValue in word)
             {
-                retValue = dict[bytes];
-            }catch(KeyNotFoundException exp)
-            {
-                retValue = "!KeyNotFound!"; /// тут обработка поиска в других источниках
+                Vertex tmpVertex = vertex.isContainsPrefix(arrValue);
+                if (tmpVertex != null)
+                {
+                    vertex = tmpVertex;
+                }
+                else
+                {
+                    vertex = vertex.addChild(arrValue);
+                }
             }
-            return retValue;
+            vertex.translateVertex = decodeLine[1];
         }
-
 
     }
 }
