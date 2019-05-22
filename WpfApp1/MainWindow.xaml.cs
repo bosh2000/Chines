@@ -40,6 +40,7 @@ namespace WpfApp1
             if (LineFileName == string.Empty) { Logger.Error("Не выбран файл со строками разбора"); return; }
             try
             {
+                tree = new Vertex();
                 Dictionary dictionary = new Dictionary(tree);
                 dictionary.LoadDictionary(DictionaryFileName);
                 Lines lines = new Lines();

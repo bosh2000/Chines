@@ -13,13 +13,13 @@ namespace WpfApp1
         {
             try
             {
-                using (StreamReader reader = new StreamReader(fileName, System.Text.Encoding.Default))
+                using (StreamReader reader = new StreamReader(fileName, System.Text.Encoding.UTF8))
                 {
                     string line = string.Empty;
 
                     while ((line = reader.ReadLine()) != null)
                     {
-                        lines.Add(Encoding.Default.GetBytes(line));
+                        lines.Add(line);
                     }
                 }
             }

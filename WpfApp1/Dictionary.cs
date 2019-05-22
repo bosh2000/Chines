@@ -16,7 +16,7 @@ namespace WpfApp1
 
         public void LoadDictionary(string fileName)
         {
-            tree = new Vertex();
+            //tree = new Vertex();
             try
             {
                 using (StreamReader reader = new StreamReader(fileName, System.Text.Encoding.UTF8))
