@@ -10,28 +10,29 @@ namespace WpfApp1
     {
         public char prefix;
         public string translateVertex;
-        public List<Vertex> vertices;
+        public Dictionary<char,Vertex> vertices;
         public bool final;
 
 
         public Vertex()
         {
-            vertices = new List<Vertex>();
+            vertices = new Dictionary<char, Vertex>() ;
         }
         public Vertex isContainsPrefix(char value)
         {
             if (this.final) return null;
-            foreach (Vertex arrValue in vertices)
-            {
-                if (arrValue.prefix == value) return arrValue;
-            }
+            //foreach (Vertex arrValue in vertices)
+            //{
+            //    if (arrValue.prefix == value) return arrValue;
+            //}
+            if (vertices.ContainsKey(value)) { return vertices[value]; }
             return null;
         }
 
         public Vertex addChild(char value)
         {
             Vertex vertexValue = new Vertex() { prefix = value };
-            vertices.Add(vertexValue);
+            vertices.Add(value,vertexValue);
             return vertexValue;
         }
     }
