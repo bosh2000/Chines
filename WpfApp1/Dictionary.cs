@@ -7,13 +7,23 @@ namespace WpfApp1
 {
     internal class Dictionary
     {
+        /// <summary>
+        /// Префиксное дерево, указывает на начальный узел.
+        /// </summary>
         public Vertex tree;
 
+        /// <summary>
+        /// Конструктор.
+        /// </summary>
+        /// <param name="tree">Начальный узел дерева.</param>
         public Dictionary(Vertex tree)
         {
             this.tree = tree;
         }
-
+        /// <summary>
+        /// Метод построковой загрузки файла словаря, создание дерева.
+        /// </summary>
+        /// <param name="fileName"></param>
         public void LoadDictionary(string fileName)
         {
             //tree = new Vertex();
@@ -37,12 +47,21 @@ namespace WpfApp1
             Logger.Info("Словарь загружен.");
         }
 
+        /// <summary>
+        /// Проверка на формат файла словаря. По первой строки файла.
+        /// </summary>
+        /// <param name="line">Первая строка файла.</param>
+        /// <returns>false в случае не соответвия строки шаблону. True в случае успеха.</returns>
         private bool CheckFormatDictionaryFile(string line)
         {
             string[] checkedLine = line.Split('\t');
             return ((checkedLine[0] == "SourceText") && (checkedLine[1] == "TargetText")) ? true : false;
         }
 
+        /// <summary>
+        /// Разбор строки , разбор строки по вершинам, выстраивание дерева.
+        /// </summary>
+        /// <param name="line">Строка для разбора в формате Значание|TAB|перевод.</param>
         private void DecodeLine(string line)
         {
             string[] decodeLine = line.Split('\t');

@@ -7,8 +7,15 @@ namespace WpfApp1
 {
     internal class Lines : IEnumerable
     {
+        /// <summary>
+        /// Массив строк.
+        /// </summary>
         private ArrayList lines = new ArrayList();
 
+        /// <summary>
+        /// Загрузка строк для перевод из файла.
+        /// </summary>
+        /// <param name="fileName">Имя файла , со строками для перевода.</param>
         public void LoadLines(string fileName)
         {
             try
@@ -31,6 +38,10 @@ namespace WpfApp1
             Logger.Info("Строки загружены.");
         }
 
+        /// <summary>
+        /// Реализация интерфейся IEnumerator для реализации 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator GetEnumerator()
         {
             return lines.GetEnumerator();

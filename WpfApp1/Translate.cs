@@ -4,15 +4,30 @@ namespace WpfApp1
 {
     internal class Translate
     {
+        /// <summary>
+        /// Дерево словаря.
+        /// </summary>
         private Vertex tree;
+        
+        /// <summary>
+        /// Массив строк для перевода.
+        /// </summary>
         private Lines lines;
 
+        /// <summary>
+        /// Конструктор.
+        /// </summary>
+        /// <param name="dictionary">Дерево словаря.</param>
+        /// <param name="lines">Массив строк.</param>
         public Translate(Vertex dictionary, Lines lines)
         {
             this.tree = dictionary;
             this.lines = lines;
         }
 
+        /// <summary>
+        /// Процесс "перевода", обход вершин дерева, и по обходу состовляется строка перевода.
+        /// </summary>
         public void ProccessTranslate()
         {
             string decodeString = string.Empty;
